@@ -20,9 +20,9 @@ FONT_BASE_NAMES = {
     "samples": "Samples test font"
 }
 FORMAT_DICT = {
-    "cff2_colr_1": "binary vectors (cff2)",
-    "cff_colr_1": "binary vectors (cff)",
-    "glyf_colr_1": "binary vectors (glyf)",
+    "cff2_colr_1": "COLRv1 (cff2)",
+    "cff_colr_1": "COLRv1 (cff)",
+    "glyf_colr_1": "COLRv1 (glyf)",
     "picosvg": "picosvg",
     "picosvgz": "compressed picosvg",
     "untouchedsvg": "svg",
