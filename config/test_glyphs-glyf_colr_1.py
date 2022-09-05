@@ -887,27 +887,34 @@ class PaintRotate(TestCategory):
                 maximum=_MAX_F2DOT14_ANGLE,
             ),
             dict(
-                tag="ROTX",
-                name="Var Rotate Center X Offset",
-                minimum=-500,
+                tag="ROTB",
+                name="Var Rotate Angle Offset B",
+                minimum=-_MAX_F2DOT14_ANGLE,
                 default=0,
-                maximum=500,
+                maximum=0,
             ),
-            dict(
-                tag="ROTY",
-                name="Var Rotate Center Y Offset",
-                minimum=-500,
-                default=0,
-                maximum=500,
-            ),
+            #             dict(
+            #                 tag="ROTX",
+            #                 name="Var Rotate Center X Offset",
+            #                 minimum=-500,
+            #                 default=0,
+            #                 maximum=500,
+            #             ),
+            #             dict(
+            #                 tag="ROTY",
+            #                 name="Var Rotate Center Y Offset",
+            #                 minimum=-500,
+            #                 default=0,
+            #                 maximum=500,
+            #             ),
         ]
 
     def _get_test_parameters(self):
         return [
             (10, 0, 0),
-            (-10, _UPEM, _UPEM),
-            (25, _UPEM / 2, _UPEM / 2),
-            (-15, _UPEM / 2, _UPEM / 2),
+            #            (-10, _UPEM, _UPEM),
+            #            (25, _UPEM / 2, _UPEM / 2),
+            #            (-15, _UPEM / 2, _UPEM / 2),
         ]
 
     def _make_test_glyph(set, param_set, position, accessor):
@@ -917,7 +924,7 @@ class PaintRotate(TestCategory):
 
         color_orange = _cpal("orange", 0.7)
 
-        angle_addition = _deltaOrZero("ROTA", position)
+        angle_addition = _deltaOrZero("ROTA", position) + _deltaOrZero("ROTB", position)
         x_addition = _deltaOrZero("ROTX", position)
         y_addition = _deltaOrZero("ROTY", position)
 
@@ -1772,21 +1779,21 @@ class TestDefinitions:
         self.categories = [
             # UtilContours has .notdef and null and should be first so that .notdef becomes glyph id 0.
             UtilContours(0xFE000, 0xFE100),
-            GradientStopsRepeat(0xF0100, 0xF0200),
-            Sweep(0xF0200, 0xF0300),
-            PaintScale(0xF0300, 0xF0400),
-            ExtendMode(0xF0500, 0xF0600),
+            #            GradientStopsRepeat(0xF0100, 0xF0200),
+            #            Sweep(0xF0200, 0xF0300),
+            #            PaintScale(0xF0300, 0xF0400),
+            #            ExtendMode(0xF0500, 0xF0600),
             PaintRotate(0xF0600, 0xF0700),
-            PaintSkew(0xF0700, 0xF0800),
-            PaintTransform(0xF0800, 0xF0900),
-            PaintTranslate(0xF0900, 0xF0A00),
-            Composite(0xF0A00, 0xF0B00),
-            ForegroundColor(0xF0B00, 0x0F0C00),
-            ClipBox(0xF0C00, 0x0F0D00),
-            GradientP2Skewed(0xF0D00, 0xF0E00),
-            PaletteCircles(0xF0E00, 0xF0F00),
-            CircleContours(0xF0F00, 0xF1000),
-            VariableAlpha(0xF1000, 0xF1100),
+            #            PaintSkew(0xF0700, 0xF0800),
+            #            PaintTransform(0xF0800, 0xF0900),
+            #            PaintTranslate(0xF0900, 0xF0A00),
+            #            Composite(0xF0A00, 0xF0B00),
+            #            ForegroundColor(0xF0B00, 0x0F0C00),
+            #            ClipBox(0xF0C00, 0x0F0D00),
+            #            GradientP2Skewed(0xF0D00, 0xF0E00),
+            #            PaletteCircles(0xF0E00, 0xF0F00),
+            #            CircleContours(0xF0F00, 0xF1000),
+            #            VariableAlpha(0xF1000, 0xF1100),
         ]
 
     def make_all_glyphs(self, position):
