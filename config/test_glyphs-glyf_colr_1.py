@@ -873,6 +873,62 @@ class ExtendMode(TestCategory):
         )
 
 
+class Satellite(TestCategory):
+    def get_name(self):
+        return "satellite"
+
+    def get_axis_definitions(self):
+        return [
+            dict(
+                tag="SANI",
+                name="Animate satellite radio wave",
+                minimum=0,
+                default=0,
+                maximum=0.1,
+            ),
+        ]
+
+    def _get_test_parameters(self):
+        return [True]
+
+    def _make_test_glyph(self, param_set, position, accessor):
+        coordinates = {
+            "x0": 300,
+            "y0": 500,
+            "r0": 120,
+            "x1": 700,
+            "y1": 500,
+            "r1": 0,
+        }
+
+        colr = {
+            "Format": ot.PaintFormat.PaintGlyph,
+            "Glyph": _UPEM_BOX_GLYPH,
+            "Paint": {
+                "Format": ot.PaintFormat.PaintRadialGradient,
+                "ColorLine": {
+                    "ColorStop": [
+                        (0.5 + _deltaOrZero("SANI", position), *_cpal("blue")),
+                        (0.55 + _deltaOrZero("SANI", position), *_cpal("black")),
+                    ],
+                    "Extend": ot.ExtendMode.REFLECT,
+                },
+                **coordinates,
+            },
+        }
+
+        return SampleGlyph(
+            glyph_name="satellite_waves",
+            accessor=accessor,
+            glyph=_upem_box_pen().glyph(),
+            advance=_UPEM,
+            clip_box=(0, 0, _UPEM, _UPEM),
+            colr=colr,
+            description=f"Illustrates a radio wave from a satellite.",
+            axes_effect="`SANI` moves the motion of the satellite radio wave.",
+        )
+
+
 class PaintRotate(TestCategory):
     def get_name(self):
         return "paint_rotate"
@@ -1787,6 +1843,7 @@ class TestDefinitions:
             PaletteCircles(0xF0E00, 0xF0F00),
             CircleContours(0xF0F00, 0xF1000),
             VariableAlpha(0xF1000, 0xF1100),
+            Satellite(0xF1100, 0xF1200),
         ]
 
     def make_all_glyphs(self, position):
